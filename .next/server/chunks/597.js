@@ -1,1 +1,0 @@
-"use strict";exports.id=597,exports.ids=[597],exports.modules={4597:(e,s,t)=>{t.r(s),t.d(s,{default:()=>r});let r=(0,t(8570).createProxy)(String.raw`/Users/yverdon/Documents/GitHub/issL/src/components/Scene.jsx#default`)}};
