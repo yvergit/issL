@@ -1,4 +1,8 @@
-module.exports = {
-  output: 'export', // for static export
-  // no basePath or assetPrefix needed
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
 };
+
+module.exports = nextConfig; // if CommonJS
+// or
+// export default nextConfig; // if ESM

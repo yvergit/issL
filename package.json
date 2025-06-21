@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "export": "npm run build",
-    "deploy": "npm run export"
+  "build": "npx next build",
+  "deploy": "npm run build && git rm -r --cached . && cp -r out/* ./ && git add . && git commit -m 'Deploy static site to GitHub Pages' && git push origin main --force",
+  "dev": "next dev",
+  "lint": "next lint"
   },
   "dependencies": {
     "@react-spring/three": "^9.7.4",
