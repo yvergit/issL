@@ -7,7 +7,6 @@ import { useFrame } from '@react-three/fiber';
 import { Typewriter } from 'react-simple-typewriter';
 import { Model } from './model'; // ✅ Ensure this path is correct
 import { useScroll } from '@react-three/drei';
-import Texty from './texty';  // adjust path if needed
 
 // Then, inside your main component's JSX return, just add:
 
@@ -105,45 +104,6 @@ const button3Items = [
     title: 'Soon',
     description:
       'New Partnerships and testimonials will be added soon. Stay tuned for more success stories!',
-  },
-];
-
-const AMA_QUESTIONS = [
-  {
-    id: 'q1',
-    question: 'What is ISSL Network?',
-    answer:
-      'ISSL Network offers AI-powered solutions that help businesses automate tasks like appointment booking, lead follow-ups, and ad generation. We enable companies to scale faster, save time, and increase profitability through intelligent automation.',
-  },
-  {
-    id: 'q2',
-    question: 'How does your AI assistant work?',
-    answer:
-      'Our AI assistant is designed to handle your business operations 24/7. It automatically responds to customer inquiries, schedules appointments, sends follow-up emails, and even engages with leads on social media — all while learning from your business to improve over time.',
-  },
-  {
-    id: 'q3',
-    question: 'Will the AI integrate with my existing systems?',
-    answer:
-      'Yes! Our platform is built to integrate seamlessly with your existing tools and workflows. Whether you use CRMs, social media platforms, or email marketing systems, our AI will easily plug into your processes, boosting efficiency without the need for complicated setups.',
-  },
-  {
-    id: 'q4',
-    question: 'How will AI automation save me time?',
-    answer:
-      "AI automation handles routine tasks like appointment scheduling, responding to leads, and sending follow-up emails, allowing you to focus on more strategic activities. With AI doing the repetitive work, you'll save valuable hours each week.",
-  },
-  {
-    id: 'q5',
-    question: 'How can this platform help my business grow and save costs?',
-    answer:
-      'By automating repetitive tasks, optimizing workflows, and providing data-driven insights, our platform helps you increase efficiency and reduce operational costs. This allows you to focus on strategic goals and business expansion.',
-  },
-  {
-    id: 'q6',
-    question: "How quickly can I see results from using ISSL Network's AI solutions?",
-    answer:
-      "You can start seeing improvements within the first few weeks as our AI tools automate key processes, boost engagement, and optimize your workflows. Over time, as the AI learns from your business, you'll notice even more significant results in efficiency, lead conversion, and overall growth.",
   },
 ];
 
@@ -382,117 +342,47 @@ export default function Scene() {
     </ScrollControls>
   </Suspense>
 </Canvas>
-<Texty />
 
 
 
+      {/* Circular Buttons Container */}
+<div
+  className="absolute top-1/2 left-1/2 w-[300px] h-[300px] -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
+  style={{ position: 'absolute' }}
+>
+  {buttons.map(({ id, label, img }, index) => {
+    const angle = (index / buttons.length) * 4 * Math.PI; // angle in radians
+    const radius = 240; // radius of circle in px
+    const x = radius * Math.cos(angle);
+    const y = radius * Math.sin(angle);
+    return (
+      <button
+        key={id}
+        onClick={() => handleButtonClick(id)}
+        style={{
+          position: 'absolute',
+          left: `calc(50% + ${x}px)`,
+          top: `calc(50% + ${y}px)`,
+          width: '56px',
+          height: '56px',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'auto',
+        }}
+        className={`rounded-full overflow-hidden border-2 border-white shadow-lg transition transform hover:scale-110 ${
+          activeBtnId === id ? 'bg-gradient-to-br from-green-400 to-blue-600' : 'bg-transparent'
+        }`}
+      >
+        <img
+          src={img}
+          alt={`Button ${label}`}
+          className="w-full h-full object-cover pointer-events-none select-none"
+          draggable={false}
+        />
+      </button>
+    );
+  })}
+</div>
 
-      {/* AMA Button */}
-      <div className="absolute left-1/2 top-40 -translate-x-1/2 z-50">
-        <button
-          onClick={openAMA}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className={`px-5 py-2 rounded-full text-white font-semibold transition transform hover:scale-105
-            ${
-              initialStyle || isHovered
-                ? 'bg-gradient-to-br from-green-400 to-blue-600 hover:from-blue-600 hover:to-green-400 shadow-lg'
-                : 'bg-transparent shadow-none'
-            }`}
-          style={{
-            border: initialStyle || isHovered ? '2px solid white' : '2px solid transparent',
-            transition: 'background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease',
-          }}
-        >
-          Your Questions, Answered Clearly
-        </button>
-
-        {/* AMA Popup */}
-        {isAMAOpen && (
-          <div className="relative max-w-xs bg-white bg-opacity-95 rounded-xl shadow-xl p-5 text-gray-900 font-medium mt-3">
-            {/* Tail */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '12px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: 0,
-                height: 0,
-                borderLeft: '12px solid transparent',
-                borderRight: '12px solid transparent',
-                borderTop: '12px solid white',
-              }}
-            />
-            {!selectedQuestionId ? (
-              <>
-                <h3 className="text-lg font-semibold mb-3">Ask Me Anything</h3>
-                <ul className="space-y-3 max-h-60 overflow-y-auto">
-                  {AMA_QUESTIONS.map(({ id, question }) => (
-                    <li key={id}>
-                      <button
-                        onClick={() => selectQuestion(id)}
-                        className="text-left w-full text-blue-600 hover:underline focus:outline-none"
-                      >
-                        {question}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  onClick={closeAMA}
-                  className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-                >
-                  Close
-                </button>
-              </>
-            ) : (
-              <>
-                <h3 className="text-lg font-semibold mb-3">
-                  {AMA_QUESTIONS.find((q) => q.id === selectedQuestionId)?.question}
-                </h3>
-                <p className="mb-5">
-                  {AMA_QUESTIONS.find((q) => q.id === selectedQuestionId)?.answer}
-                </p>
-                <div className="flex gap-3">
-                  <button
-                    onClick={backToQuestions}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-                  >
-                    Back to Questions
-                  </button>
-                  <button
-                    onClick={closeAMA}
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-                  >
-                    Close
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Buttons Container */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-4 z-50">
-        {buttons.map(({ id, label, img }) => (
-          <button
-            key={id}
-            onClick={() => handleButtonClick(id)}
-            className={`relative w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-lg transition transform hover:scale-110 ${
-              activeBtnId === id ? 'bg-gradient-to-br from-green-400 to-blue-600' : 'bg-transparent'
-            }`}
-          >
-            <img
-              src={img}
-              alt={`Button ${label}`}
-              className="w-full h-full object-cover pointer-events-none select-none"
-              draggable={false}
-            />
-          </button>
-        ))}
-      </div>
 
       {/* Modal Content for Button 1 (Contact Form) */}
       {activeBtnId === 1 && <ContactForm onClose={closeText} />}

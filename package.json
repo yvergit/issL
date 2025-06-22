@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-  "build": "npx next build",
-  "deploy": "npm run build && git rm -r --cached . && cp -r out/* ./ && git add . && git commit -m 'Deploy static site to GitHub Pages' && git push origin main --force",
-  "dev": "next dev",
-  "lint": "next lint"
+    "build": "npx next build",
+    "deploy": "npm run build && git rm -r --cached . && cp -r out/* ./ && git add . && git commit -m 'Deploy static site to GitHub Pages' && git push origin main --force",
+    "dev": "next dev",
+    "lint": "next lint"
   },
   "dependencies": {
     "@react-spring/three": "^9.7.4",
@@ -14,6 +14,7 @@
     "@react-three/drei": "^9.111.5",
     "@react-three/fiber": "^8.17.6",
     "@react-three/postprocessing": "^2.16.2",
+    "gsap": "^3.13.0",
     "next": "^14.2.30",
     "react": "^18",
     "react-dom": "^18",
