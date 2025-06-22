@@ -42,6 +42,24 @@ function ButtonOverlay({ buttons, handleButtonClick, activeBtnId, threshold = 0.
   );
 }
 
+const CircularButtons = ({ buttons, handleButtonClick, activeBtnId }) => {
+  const [radius, setRadius] = useState(240); // default to desktop
+
+  useEffect(() => {
+    const updateRadius = () => {
+      if (window.innerWidth < 768) {
+        setRadius(120); // smaller screens
+      } else {
+        setRadius(240); // desktop
+      }
+    };
+
+    updateRadius(); // run once on mount
+    window.addEventListener('resize', updateRadius); // update on resize
+
+    return () => window.removeEventListener('resize', updateRadius); // cleanup
+  }, []);
+}
 
 
 function Loader() {
@@ -351,8 +369,8 @@ export default function Scene() {
   style={{ position: 'absolute' }}
 >
   {buttons.map(({ id, label, img }, index) => {
-    const angle = (index / buttons.length) * 4 * Math.PI; // angle in radians
-    const radius = 240; // radius of circle in px
+    const angle = (index / buttons.length) * 2 * Math.PI; // Use 2π for full circle
+    const radius = window.innerWidth < 768 ? 120 : 240; // Responsive radius
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
     return (
