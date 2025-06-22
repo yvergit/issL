@@ -209,59 +209,61 @@ export const Model = ({ mouse }) => {
   });
 
   return (
-    <group ref={groupRef} onClick={handleClick}>
-      <primitive object={scene} />
+  <group ref={groupRef} onClick={handleClick}>
+    <primitive object={scene} />
 
-      {(initialMessageShown || showDialogue) && (
-        <Html position={[0, 2.2, 0]} center distanceFactor={8}>
-          <div style={styles.bubble} onClick={e => e.stopPropagation()}>
-            {initialMessageShown && (
-              <p style={styles.text}><strong>Scroll for animation and click me for answers!</strong></p>
-            )}
+    {(initialMessageShown || showDialogue) && (
+      <Html position={[0, 2.2, 0]} center distanceFactor={8}>
+        <div style={styles.bubble} onClick={e => e.stopPropagation()}>
+          {initialMessageShown && (
+            <p style={styles.text}><strong>Scroll for animation and click me for answers!</strong></p>
+          )}
 
-            {!initialMessageShown && !menuOpen && !response && (
-              <>
-                <p style={styles.text}>{dialogue[dialogueStep]}</p>
+          {!initialMessageShown && !menuOpen && !response && (
+            <>
+              <p style={styles.text}>{dialogue[dialogueStep]}</p>
+              {/* Flex container to swap button positions */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10 }}>
+                <button style={styles.zoomButton} onClick={zoomOutOnly}>
+                  🔍 Zoom Out
+                </button>
                 <button style={styles.button} onClick={handleContinue}>
                   Continue
                 </button>
-              </>
-            )}
-
-            {!initialMessageShown && menuOpen && !response && (
-              <div style={styles.choices}>
-                {(isslMenuOpen ? isslChoices : mainChoices).map((choice, i) => (
-                  <button
-                    key={i}
-                    style={styles.choiceButton}
-                    onClick={() => handleChoice(choice)}
-                  >
-                    {choice}
-                  </button>
-                ))}
               </div>
-            )}
+            </>
+          )}
 
-            {!initialMessageShown && response && (
-              <>
-                <p style={styles.text}>{response}</p>
-                <button style={styles.button} onClick={backToMenu}>
-                  Back to menu
+          {!initialMessageShown && menuOpen && !response && (
+            <div style={styles.choices}>
+              {(isslMenuOpen ? isslChoices : mainChoices).map((choice, i) => (
+                <button
+                  key={i}
+                  style={styles.choiceButton}
+                  onClick={() => handleChoice(choice)}
+                >
+                  {choice}
                 </button>
-              </>
-            )}
+              ))}
+            </div>
+          )}
 
-            {!initialMessageShown && (
-              <button style={styles.zoomButton} onClick={zoomOutOnly}>
-                🔍 Zoom Out
+          {!initialMessageShown && response && (
+            <>
+              <p style={styles.text}>{response}</p>
+              <button style={styles.button} onClick={backToMenu}>
+                Back to menu
               </button>
-            )}
-          </div>
-          <div style={styles.tail} />
-        </Html>
-      )}
-    </group>
-  );
+            </>
+          )}
+
+          {/* Removed the separate zoom button from here since it’s included above */}
+        </div>
+        <div style={styles.tail} />
+      </Html>
+    )}
+  </group>
+);
 };
 
 const styles = {
