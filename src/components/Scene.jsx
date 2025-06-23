@@ -8,6 +8,7 @@ import { Typewriter } from 'react-simple-typewriter';
 import { Model } from './model'; // ✅ Ensure this path is correct
 import { useScroll } from '@react-three/drei';
 
+
 // Then, inside your main component's JSX return, just add:
 
 
@@ -363,14 +364,14 @@ export default function Scene() {
 
 
 
-      {/* Circular Buttons Container */}
+ {/* Circular Buttons Container */}
 <div
   className="absolute top-1/2 left-1/2 w-[300px] h-[300px] -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none"
   style={{ position: 'absolute' }}
 >
   {buttons.map(({ id, label, img }, index) => {
     const angle = (index / buttons.length) * 2 * Math.PI; // Use 2π for full circle
-    const radius = window.innerWidth < 768 ? 120 : 240; // Responsive radius
+    const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 120 : 240; // Check if window is defined
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
     return (
@@ -400,6 +401,7 @@ export default function Scene() {
     );
   })}
 </div>
+
 
 
       {/* Modal Content for Button 1 (Contact Form) */}

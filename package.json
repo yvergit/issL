@@ -19,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-simple-typewriter": "^5.0.1",
-    "three": "^0.168.0"
+    "three": "^0.168.0",
+    "vanta": "^0.5.24"
   },
   "devDependencies": {
     "@types/node": "22.5.2",

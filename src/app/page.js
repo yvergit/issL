@@ -11,8 +11,11 @@ export default function Home() {
         style={{ backgroundImage: "url('/bg.jpg')" }}
       ></div>
 
-      {/* Your content on top */}
-      <Scene />
+      {/* Scene component container with transparent background */}
+      <div className="relative w-full h-full bg-transparent">
+        <Scene />
+      </div>
+
       {/* Add other content here */}
     </main>
   );
