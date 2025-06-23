@@ -289,7 +289,7 @@ const styles = {
     fontSize: "15px",
     borderRadius: "20px",
     border: "none",
-    backgroundColor: "#79C267",
+    backgroundColor: "#800080", // Purple color
     color: "white",
     cursor: "pointer",
     fontWeight: "600",
