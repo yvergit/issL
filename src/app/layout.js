@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "ISSL Network EU",
-  description: "Speed up your business with ISSL Network EU",
+  description: "Specialized in and known for providing high-quality, reliable, and secure AI software solutions and more for businesses.",
 };
 
 export default function RootLayout({ children }) {
