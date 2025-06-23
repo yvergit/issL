@@ -179,7 +179,7 @@ function ContactForm({ onClose }) {
           </button>
           <button
             type="submit"
-            className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
+            className="px-4 py-2 rounded bg-purple-600 text-white hover:bg-purple-700 transition"
           >
             Send
           </button>
@@ -428,7 +428,7 @@ export default function Scene() {
             />
             <button
               onClick={closeText}
-              className="mt-6 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
+              className="mt-6 px-4 py-2 rounded bg-purple-600 text-white hover:bg-purple-700 transition"
             >
               Close
             </button>
@@ -455,8 +455,8 @@ export default function Scene() {
                   className={`px-4 py-2 rounded-full font-semibold transition
                     ${
                       btn2Index === index
-                        ? 'bg-blue-600 text-white shadow-lg'
-                        : 'bg-gray-200 text-gray-800 hover:bg-blue-400 hover:text-white'
+                        ? 'bg-purple-600 text-white shadow-lg'
+                        : 'bg-gray-200 text-gray-800 hover:bg-purple-400 hover:text-white'
                     }`}
                 >
                   {title}
@@ -471,7 +471,7 @@ export default function Scene() {
 
             <button
               onClick={closeText}
-              className="mt-6 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
+              className="mt-6 px-4 py-2 rounded bg-purple-600 text-white hover:bg-purple-700 transition"
             >
               Close
             </button>
@@ -496,8 +496,8 @@ export default function Scene() {
                   className={`px-4 py-2 rounded-full font-semibold transition
                     ${
                       btn3Index === index
-                        ? 'bg-blue-600 text-white shadow-lg'
-                        : 'bg-gray-200 text-gray-800 hover:bg-blue-400 hover:text-white'
+                        ? 'bg-purple-600 text-white shadow-lg'
+                        : 'bg-gray-200 text-gray-800 hover:bg-purple-400 hover:text-white'
                     }`}
                 >
                   {title}
@@ -512,7 +512,7 @@ export default function Scene() {
 
             <button
               onClick={closeText}
-              className="mt-6 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
+              className="mt-6 px-4 py-2 rounded bg-purple-600 text-white hover:bg-purple-700 transition"
             >
               Close
             </button>
@@ -539,8 +539,8 @@ export default function Scene() {
                   className={`px-4 py-2 rounded-full font-semibold transition
                     ${
                       btn2Index === index
-                        ? 'bg-blue-600 text-white shadow-lg'
-                        : 'bg-gray-200 text-gray-800 hover:bg-blue-400 hover:text-white'
+                        ? 'bg-purple-600 text-white shadow-lg'
+                        : 'bg-gray-200 text-gray-800 hover:bg-purple-400 hover:text-white'
                     }`}
                 >
                   {title}
@@ -555,7 +555,7 @@ export default function Scene() {
 
             <button
               onClick={closeText}
-              className="mt-6 px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
+              className="mt-6 px-4 py-2 rounded bg-purple-600 text-white hover:bg-purple-700 transition"
             >
               Close
             </button>
